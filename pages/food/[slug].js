@@ -3,18 +3,19 @@ import Layout from "../../components/Layout"
 import { client } from "../../library/client"
 import styles from "../../styles/food.module.css"
 import Image from "next/image"
-import { urlFor } from "../../library/client"
+import  {urlFor}  from "../../library/client"
 import "remixicon/fonts/remixicon.css"
 import { useStore } from "../../store/store"
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link"
+import ErrorPage from 'next/error'
+import { useRouter } from "next/router"
 
 
 export default function Food({food}) {
 
     const src = urlFor(food.image).url()
     const [Quantity, setQuantity] = useState(1)
-
 
     // add to cart function
 
@@ -39,7 +40,10 @@ export default function Food({food}) {
         setQuantity(Quantity + 1)
     }
 
-
+    const router = useRouter()
+    if (!router.isFallback && !food) {
+        return <ErrorPage statusCode={404} />
+    }
 
     return (
         <Layout>
@@ -49,7 +53,7 @@ export default function Food({food}) {
                     <div className={styles.left_side}>
                         <Image
                             className={styles.food_image}
-                            loader={()=>src}
+                           
                             src={src}
                             alt=""
                             width="500"
