@@ -2,8 +2,6 @@ import {client} from "../../library/client"
 import Layout from "../../components/Layout"
 import styles from "../../styles/order.module.css"
 import "remixicon/fonts/remixicon.css"
-import ErrorPage from 'next/error'
-import { useRouter } from "next/router"
 
 export const getServerSideProps = async({params}) => {
     const query =  `*[_type == "order" && _id == "${params.id}"]`
@@ -11,17 +9,12 @@ export const getServerSideProps = async({params}) => {
 
     return {
         props: {
-            order: order[0]
+            order: await order[0]
         }
     }
 }
 
 export default function Orders({order}) {
-
-    const router = useRouter()
-    if (!router.isFallback && !food) {
-        return <ErrorPage statusCode={404} />
-    }
     return (
         <Layout>
             <div className={styles.container}>

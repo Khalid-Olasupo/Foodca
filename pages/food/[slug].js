@@ -40,11 +40,6 @@ export default function Food({food}) {
         setQuantity(Quantity + 1)
     }
 
-    const router = useRouter()
-    if (!router.isFallback && !food) {
-        return <ErrorPage statusCode={404} />
-    }
-
     return (
             <Layout>
             <div className={styles.container}>
