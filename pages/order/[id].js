@@ -3,13 +3,13 @@ import Layout from "../../components/Layout"
 import styles from "../../styles/order.module.css"
 import "remixicon/fonts/remixicon.css"
 
-export const getServerSideProps = async({params}) => {
+export const getServerSideProps = async ({params}) => {
     const query =  `*[_type == "order" && _id == "${params.id}"]`
     const order = await client.fetch(query)
 
     return {
         props: {
-            order: await order[0]
+            order: order[0]
         }
     }
 }
