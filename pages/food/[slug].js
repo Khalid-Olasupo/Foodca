@@ -46,7 +46,9 @@ export default function Food({food}) {
     }
 
     return (
-        <Layout>
+
+        router.isFallback ? (
+            <Layout>
             <div className={styles.container}>
                 <Link href="/#menu" className={styles.go_back}><i class="ri-arrow-left-s-line"></i> Back</Link>
                 <div className={styles.content_container}>
@@ -75,6 +77,8 @@ export default function Food({food}) {
             </div>
             <Toaster/>
         </Layout>
+        ) : <div></div>
+        
     )
 }
 
