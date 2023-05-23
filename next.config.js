@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
+
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ["cdn.sanity.io"],
+		loader: "default"
+}
 }
 
 module.exports = nextConfig

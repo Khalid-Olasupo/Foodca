@@ -1,0 +1,11 @@
+.footer {
+    background: white;
+    height: 80px;
+    border-top: 1px solid #ebebeb;
+    bottom: 0;
+}
+
+.footer_warpper {
+    display: flex;
+    align-items: center;
+}

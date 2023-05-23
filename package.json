@@ -9,9 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.1.1",
+    "@emotion/react": "^11.10.6",
+    "@mantine/core": "^6.0.2",
+    "@mantine/hooks": "^6.0.2",
+    "@mantine/modals": "^6.0.1",
+    "@sanity/client": "^4.0.1",
+    "@sanity/image-url": "^1.0.2",
+    "next": "^13.1.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "remixicon": "^2.5.0",
+    "zustand": "https://pkg.csb.dev/pmndrs/zustand/commit/773e2e29/zustand/_pkg.tgz"
   },
   "devDependencies": {
     "eslint": "8.31.0",
