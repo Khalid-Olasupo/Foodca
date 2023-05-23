@@ -46,8 +46,6 @@ export default function Food({food}) {
     }
 
     return (
-
-        router.isFallback ? (
             <Layout>
             <div className={styles.container}>
                 <Link href="/#menu" className={styles.go_back}><i class="ri-arrow-left-s-line"></i> Back</Link>
@@ -77,7 +75,6 @@ export default function Food({food}) {
             </div>
             <Toaster/>
         </Layout>
-        ) : <div></div>
         
     )
 }
@@ -88,18 +85,21 @@ export async function getStaticPaths() {
     )
     return {
         paths: paths.map((slug) => ({params: {slug}})),
-        fallback: true,
+        fallback: false,
     }
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps( context ) {
     const {slug = ""} = context.params;
     const food = await client.fetch(
         `*[_type == "food" && slug.current == $slug][0]`, {slug}
         )
     return {
         props: {
-            food
+            food: await food
     }
 }
 }
+
+
+
