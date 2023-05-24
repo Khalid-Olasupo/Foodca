@@ -8,8 +8,6 @@ import "remixicon/fonts/remixicon.css"
 import { useStore } from "../../store/store"
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link"
-import ErrorPage from 'next/error'
-import { useRouter } from "next/router"
 
 
 export default function Food({food}) {
