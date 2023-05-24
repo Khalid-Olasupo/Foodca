@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const {id = ""} = context.params
-    const order = await client.fetch(`*[_type == "order" && _id == "${id}"][0]`)
+    const { params } = context
+    const order = await client.fetch(`*[_type == "order" && _id == "${params.id}"][0]`)
     return {
         props: {
             order: await order,

@@ -83,9 +83,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps( context ) {
-    const {slug = ""} = context.params;
+    const { params } = context
     const food = await client.fetch(
-        `*[_type == "food" && slug.current == $slug][0]`, {slug}
+        `*[_type == "food" && slug.current == "${params.slug}"][0]`
         )
     return {
         props: {
