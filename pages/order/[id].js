@@ -2,8 +2,6 @@ import {client} from "../../library/client"
 import Layout from "../../components/Layout"
 import styles from "../../styles/order.module.css"
 
-
-
 export async function getStaticPaths() {
     const paths = await client.fetch(
         `*[_type=="order" && defined(_id)][]._id`
@@ -16,10 +14,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const { params } = context
-    const order = await client.fetch(`*[_type == "order" && _id == "${params.id}"][0]`)
+    const order = await client.fetch(`*[_type == "order" && _id == "${params.id}"]`)
     return {
         props: {
-            order: await order,
+            order: await order[0]
         }
     }
 }

@@ -25,7 +25,7 @@ export default function OrderModal({opened, setOpened, paymentMethod}) {
     toast.success("Order placed successfully")
     resetCart()
     {
-      typeof window !=="undefined" && localStorage.setItem("order", id)
+      typeof window !=="undefined" && localStorage.setItem("order", _id)
     }
 
     router.push(`/order/${id}`)
