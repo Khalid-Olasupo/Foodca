@@ -2,9 +2,11 @@ import {client} from "../../library/client"
 import Layout from "../../components/Layout"
 import styles from "../../styles/order.module.css"
 
+
+
 export async function getServerSideProps({params}) {
-    const query =  `*[_type == "order" && _id == "${params.id}"][0]`
-    const order = await client.fetch(query)
+    const {id = ""} = params;
+    const order = await client.fetch(`*[_type == "order" && _id == "${params.id}"][0]`, {id})
     return {
         props: {
             order: order,
