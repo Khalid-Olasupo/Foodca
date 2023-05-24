@@ -4,16 +4,25 @@ import styles from "../../styles/order.module.css"
 
 
 
-export async function getServerSideProps({params}) {
-    const {id = ""} = params;
-    const order = await client.fetch(`*[_type == "order" && _id == "${params.id}"][0]`, {id})
+export async function getStaticPaths() {
+    const paths = await client.fetch(
+        `*[_type=="order" && defined(_id)][]._id`
+    )
     return {
-        props: {
-            order: order,
-        }
+        paths: paths.map((id) => ({params: {id}})),
+        fallback: true,
     }
 }
 
+export async function getStaticProps(context) {
+    const {id = ""} = context.params
+    const order = await client.fetch(`*[_type == "order" && _id == "${id}"][0]`)
+    return {
+        props: {
+            order: await order,
+        }
+    }
+}
 
 
 export default function Orders({order}) {
